@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Soldier Health Monitoring Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard2.css">
+
+    <!-- Chart.js -->
+    <script src="dashboard2.js"></script>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- ================= HEADER ================= -->
+       <!-- HEADER -->
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="title-section">
+                <h1>HACKATHON 2026</h1>
+
+                <h2>
+                    SOLDIER HEALTH MONITORING DASHBOARD
+                </h2>
+
+                <div class="orange-line"></div>
+            </div>
+
+       
+
+            <!-- Smart India Hackathon -->
+            <div class="sih">
+<img src="sihq.jpeg" alt="SIH2026">
+ <div class="sih-text">
+ <span>SMART INDIA</span>
+ <span>HACKATHON</span>
+ <span>2026</span>
+                </div>
+
+            </div>
+
+        </header>
+<!-- Decorative shapes -->
+
+    <div class="hex hex1"></div>
+    <div class="hex hex2"></div>
+    <div class="hex hex3"></div>
+    <div class="hex hex4"></div>
+
+
+    <!-- ================= MAIN DASHBOARD ================= -->
+
+    <main class="dashboard">
+
+        <!-- FILTER -->
+
+        <section class="filter-section">
+
+            <div class="filter-title">
+                Applied Filters
+            </div>
+
+            <label>
+                Patient ID:
+                <select id="patientSelect">
+                    <option value="AN01">AN01</option>
+                    <option value="AN02">AN02</option>
+                    <option value="AN03">AN03</option>
+                </select>
+            </label>
+
+        </section>
+
+
+        <h3 class="dashboard-title">
+            Patient Health Monitoring Dashboard
+        </h3>
+
+
+        <!-- ================= TOP SECTION ================= -->
+
+        <section class="top-grid">
+
+            <!-- LEFT METRICS -->
+
+            <div class="metrics-grid">
+
+                <div class="metric-card">
+                    <span class="metric-icon">🌡️</span>
+                    <div>
+                        <div class="metric-value" id="temperature">33.9 °C</div>
+                        <div class="metric-name">Body Temperature</div>
+                    </div>
+                </div>
+
+
+                <div class="metric-card">
+                    <span class="metric-icon">💓</span>
+                    <div>
+                        <div class="metric-value" id="heartRate">82.8 bpm</div>
+                        <div class="metric-name">Heart Rate</div>
+                    </div>
+                </div>
+
+
+                <div class="metric-card">
+                    <span class="metric-icon">🫁</span>
+                    <div>
+                        <div class="metric-value" id="respRate">15.27 bpm</div>
+                        <div class="metric-name">Respiratory Rate</div>
+                    </div>
+                </div>
+
+
+                <div class="metric-card">
+                    <span class="metric-icon">🩸</span>
+                    <div>
+                        <div class="metric-value" id="glucose">114.77 mg/dL</div>
+                        <div class="metric-name">Blood Glucose</div>
+                    </div>
+                </div>
+
+
+                <div class="metric-card">
+                    <span class="metric-icon">🧪</span>
+                    <div>
+                        <div class="metric-value" id="cholesterol">204.1 mg/dL</div>
+                        <div class="metric-name">Blood Cholesterol</div>
+                    </div>
+                </div>
+
+
+                <div class="metric-card">
+                    <span class="metric-icon">🫀</span>
+                    <div>
+                        <div class="metric-value" id="oxygen">90.1 %</div>
+                        <div class="metric-name">Oxygen Saturation</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- BLOOD PRESSURE -->
+
+            <div class="health-panel">
+
+                <h3>
+                    Average Blood Pressure for Patient
+                    <span id="bpPatient">AN01</span>
+                </h3>
+
+                <div class="condition-text" id="bpCondition">
+                    Normal
+                </div>
+
+                <div class="bp-container">
+
+                    <div>
+                        <h4>Systolic</h4>
+
+                        <div class="gauge">
+                            <div class="gauge-fill"></div>
+                            <div class="needle" id="sysNeedle"></div>
+                        </div>
+
+                        <strong id="systolic">118 mmHg</strong>
+                    </div>
+
+
+                    <div>
+                        <h4>Diastolic</h4>
+
+                        <div class="gauge">
+                            <div class="gauge-fill"></div>
+                            <div class="needle" id="diaNeedle"></div>
+                        </div>
+
+                        <strong id="diastolic">78 mmHg</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PULSE -->
+
+            <div class="health-panel">
+
+                <h3>
+                    Average Pulse for Patient
+                    <span id="pulsePatient">AN01</span>
+                </h3>
+
+                <div class="condition-text" id="pulseCondition">
+                    Normal
+                </div>
+
+                <div class="pulse-gauge">
+
+                    <div class="gauge">
+                        <div class="gauge-fill"></div>
+                        <div class="needle" id="pulseNeedle"></div>
+                    </div>
+
+                    <strong id="pulseValue">
+                        85.7 bpm
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ALERT ================= -->
+
+        <section class="status-section">
+
+            <div class="status-label">
+                STATUS:
+            </div>
+
+            <div class="status-indicator normal" id="statusIndicator"></div>
+
+            <div class="status-text" id="overallStatus">
+                NORMAL
+            </div>
+
+            <div class="last-update">
+                Last Update:
+                <span id="lastUpdate">--</span>
+            </div>
+
+        </section>
+
+
+        <!-- ================= ALERT BOX ================= -->
+
+        <section class="alert-box" id="alertBox">
+
+            <div class="alert-title">
+                ⚠ Health Alerts
+            </div>
+
+            <div id="alerts">
+                No abnormal health parameters detected.
+            </div>
+
+        </section>
+
+
+        <!-- ================= CHARTS ================= -->
+
+        <section class="charts-grid">
+
+            <div class="chart-panel">
+
+                <h3>
+                    Sleep Duration and Deep Sleep Hours
+                </h3>
+
+                <canvas id="sleepChart"></canvas>
+
+                <div class="dashboard-photo sleep-photo">
+                    <img src="sleep.jpeg" alt="Smart India Hackathon graphic">
+                </div>
+
+            </div>
+
+
+            <div class="chart-panel">
+
+                <h3>
+                    Step Count Progress
+                </h3>
+
+                <canvas id="stepChart"></canvas>
+<div class="dashboard-photo step-photo">
+                    <img src="step.jpeg" alt="Smart India Hackathon graphic">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- ================= HEALTH SUMMARY ================= -->
+
+        <section class="health-summary">
+
+            <h2>Health Condition Summary</h2>
+
+            <div class="summary-content">
+
+                <div>
+                    <span>Patient</span>
+                    <strong id="summaryPatient">AN01</strong>
+                </div>
+
+                <div>
+                    <span>Overall Condition</span>
+                    <strong id="summaryCondition">
+                        Stable
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Monitoring</span>
+                    <strong class="live">
+                        ● LIVE
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
